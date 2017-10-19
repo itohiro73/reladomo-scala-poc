@@ -18,12 +18,5 @@
 
 <Mithra xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="mithraobject.xsd">
-    <MithraObjectResource name="AccountBalance"/>
-    <MithraObjectResource name="AllTypes"/>
-    <MithraObjectResource name="Customer"/>
-    <MithraObjectResource name="CustomerAccount"/>
-    <MithraObjectResource name="Employee" />
     <MithraObjectResource name="ObjectSequence"/>
-    <MithraObjectResource name="Person"/>
-    <MithraObjectResource name="Task"/>
 </Mithra>
