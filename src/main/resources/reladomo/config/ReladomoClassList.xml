@@ -19,4 +19,6 @@
 <Mithra xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="mithraobject.xsd">
     <MithraObjectResource name="ObjectSequence"/>
+    <MithraObjectResource name="BitemporalChildObject"/>
+    <MithraObjectResource name="ParentObject"/>
 </Mithra>

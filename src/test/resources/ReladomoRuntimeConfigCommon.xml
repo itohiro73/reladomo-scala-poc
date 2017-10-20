@@ -8,14 +8,9 @@
         <Property name="jdbcPassword" value="pass"/>
         <Property name="maxPoolSize" value="3"/>
 
-        <MithraObjectConfiguration className="kata.domain.AccountBalance" cacheType="partial"/>
-        <MithraObjectConfiguration className="kata.domain.AllTypes" cacheType="partial"/>
-        <MithraObjectConfiguration className="kata.domain.Customer" cacheType="partial"/>
-        <MithraObjectConfiguration className="kata.domain.CustomerAccount" cacheType="partial"/>
-        <MithraObjectConfiguration className="kata.domain.Employee" cacheType="partial"/>
         <MithraObjectConfiguration className="kata.domain.ObjectSequence" cacheType="partial"/>
-        <MithraObjectConfiguration className="kata.domain.Person" cacheType="partial"/>
-        <MithraObjectConfiguration className="kata.domain.Task" cacheType="partial"/>
+        <MithraObjectConfiguration className="kata.domain.ParentObject" cacheType="partial"/>
+        <MithraObjectConfiguration className="kata.domain.BitemporalChildObject" cacheType="partial"/>
     </ConnectionManager>
 
 </MithraRuntime>
