@@ -27,6 +27,7 @@ class IssuesSpec extends FunSpec with Matchers with BeforeAndAfter {
 
       maybeParent match {
         case Some(parent) =>
+          //since there is no child object inserted, it should return None.
           parent.relatedObject(TimestampUtil.now()) should equal(None)
       }
     }
