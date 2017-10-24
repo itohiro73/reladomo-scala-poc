@@ -1,6 +1,7 @@
 package example
 
-import java.sql.DriverManager
+import java.sql.{DriverManager, Timestamp}
+import java.util.Calendar
 
 import com.folio_sec.reladomo.scala_api.TransactionProvider.withTransaction
 import com.folio_sec.reladomo.scala_api.configuration.DatabaseManager
@@ -32,12 +33,12 @@ class IssuesSpec extends FunSpec with Matchers with BeforeAndAfter {
   }
 
   describe("Bi-temporal object") {
-    it("updates attributes without touching primary key") {
+    it("updates attributes with non-infinite businessTo attribute without touching primary key") {
       withTransaction { implicit tx =>
         val parentObject = NewParentObject(name = "name").insert()
-        NewBitemporalChildObject(name = "name", state = 1, parentObject.id).insert()
+        NewBitemporalChildObject(name = "name", state = 1, parentObject.id)
+          .insertUntil(createTimestamp(9000, 1, 1)) //using long time away so that the test is practically deterministic
       }
-
 
       val maybeParent = ParentObjectFinder.findOneWith(_.name.eq("name"))
       maybeParent match {
@@ -59,6 +60,21 @@ class IssuesSpec extends FunSpec with Matchers with BeforeAndAfter {
       }
     }
 
+  }
+
+  private[this] def createTimestamp(year: Int,
+                                    month: Int,
+                                    dayOfMonth: Int): Timestamp = {
+    val cal = Calendar.getInstance
+    cal.set(Calendar.YEAR, year)
+    cal.set(Calendar.MONTH, month-1)
+    cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+    cal.set(Calendar.AM_PM, Calendar.AM)
+    cal.set(Calendar.HOUR_OF_DAY, 0)
+    cal.set(Calendar.MINUTE, 0)
+    cal.set(Calendar.SECOND, 0)
+    cal.set(Calendar.MILLISECOND, 0)
+    new Timestamp(cal.getTimeInMillis)
   }
 
   Class.forName("org.h2.Driver")
